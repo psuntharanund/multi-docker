@@ -15,3 +15,10 @@ after_success:
   - docker build -t ohmsun/multi-nginx ./nginx
   - docker build -t ohmsun/multi-server ./server
   - docker build -t ohmsun/multi-worker ./worker
+  #Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push ohmsun/multi-client
+  - docker push ohmsun/multi-nginx
+  - docker push ohmsun/multi-server
+  - docker push ohmsun/multi-worker
